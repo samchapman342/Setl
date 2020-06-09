@@ -21,8 +21,8 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.config = {
     name: "ban",
-    description: "Bans a Users",
+    description: "bans member",
     usage: "!ban",
-    accessableby: "Admins",
-    aliases: []
+    accessableby: "bans",
+    aliases: ['b', 'ban']
 }

@@ -8,8 +8,8 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.config = {
     name: "addrole",
-    description: "",
+    description: "adds role",
     usage: "!addrole",
-    accessableby: "Members",
-    aliases: []
+    accessableby: "addrole",
+    aliases: ['ar', 'addrole']
 }
