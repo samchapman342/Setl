@@ -22,6 +22,7 @@ fs.readdir("./commands", (err, files) => {
         return console.log("[LOGS] Couldn't Find Commands!");
     }
 
+
     jsfile.forEach((f, i) => {
         let pull = require(`./commands/${f}`);
         client.commands.set(pull.config.name, pull);
