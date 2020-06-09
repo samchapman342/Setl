@@ -1,0 +1,15 @@
+{
+  "name": "team-setl-bot",
+  "version": "1.0.0",
+  "description": "team-setl-bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "!"
+  },
+  "author": "darkmatta",
+  "license": "ISC",
+  "dependencies": {
+    "api": "^2.0.2",
+    "discord.js": "^12.2.0"
+  }
+}
