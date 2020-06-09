@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
     name: "hello",
     description: "Answers hello",
-    usage: "?hello",
+    usage: "!hello",
     accessableby: "Members",
     aliases: []
 }
