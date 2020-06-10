@@ -1,16 +1,12 @@
-const botsettings = require('./botsettings.json')
-const Discord = require("discord.js")
-const client = new Discord.Client();
-const PREFIX = "!"
-client.on('ready', async() => {
+const Discord = require('discord.js');
+const botsettings = require('./botsettings.json');
 
-    console.log("Bot is Ready")
-});
+const bot = new Discord.Client({disableEveryone: true});
 
-require("./util/eventHandler")(client)
+require("./util/eventHandler")(bot)
 
 const fs = require("fs");
-client.commands = new Discord.Collection();
+bot.commands = new Discord.Collection();
 
 fs.readdir("./commands/", (err, files) => {
     if(err) console.log(err)
@@ -26,30 +22,30 @@ fs.readdir("./commands/", (err, files) => {
     jsfile.forEach((f, i) => {
         let pull = require(`./commands/${f}`);
         console.log(`Command "${f}" loaded!`)
-        client.commands.set(pull.config.name, pull);
+        bot.commands.set(pull.config.name, pull);
         if(pull.config.aliases) {
           pull.config.aliases.forEach(alias => {
-            client.commands.set(alias, pull)
+            bot.commands.set(alias, pull)
           })
         }
     });
 });
 
-client.on("message", async message => {
-    if(message.author.client || message.channel.type === "dm") return;
+bot.on("message", async message => {
+    if(message.author.bot || message.channel.type === "dm") return;
 
-    let prefix = clientsettings.prefix;
+    let prefix = botsettings.prefix;
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
 
     if(!message.content.startsWith(prefix)) return;
-    let commandfile = client.commands.get(cmd.slice(prefix.length)) || client.commands.get(client.aliases.get(cmd.slice(prefix.length)))
+    let commandfile = bot.commands.get(cmd.slice(prefix.length)) || bot.commands.get(bot.aliases.get(cmd.slice(prefix.length)))
+    if(commandfile) commandfile.run(bot,message,args)
+
 })
 
-
-
-client.login(botsettings.token);
+bot.login(botsettings.token);
 
 
 
