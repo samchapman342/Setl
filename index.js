@@ -37,14 +37,14 @@ fs.readdir("./commands/", (err, files) => {
 
 client.on("message", async message => {
     if(message.author.bot || message.channel.type === "dm") return;
-    let messageArray = message.content.toLowerCase().split(" ");
+   let messageArray = message.content.toLowerCase().split(" ");
 let command = messageArray[0];
 let args = messageArray.slice(1);
 
 if(!command.startsWith(prefix)) return;
 
-let cmd = client.commands.get(command.slice(prefix.length));
-if(cmd) cmd.run(client, message, args);
+let cmd = bot.commands.get(command.slice(prefix.length));
+if(cmd) cmd.run(bot, message, args); 
 })
 
 
