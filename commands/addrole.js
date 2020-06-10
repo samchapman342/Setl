@@ -40,5 +40,5 @@ module.exports.config = {
     description: "adds role",
     usage: "!addrole",
     accessableby: "addrole",
-    aliases: ['ar', 'addsrole']
+    aliases: ['ar', 'add role']
 }
