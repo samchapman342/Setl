@@ -37,56 +37,7 @@ fs.readdir("./commands/", (err, files) => {
 });
 
 client.on("message", async message => {
-    if(message.author.client || message.channel.type === "dm") return;
 
-    let prefix = botsettings.prefix;
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = message.content.substring(message.content.indexOf(' ')+1);
-
-    if(!message.content.startsWith(prefix)) return;
-    let commandfile = client.commands.get(cmd.slice(prefix.length)) || client.commands.get(client.aliases.get(cmd.slice(prefix.length)))
-    if(commandfile) commandfile.run(bot,message,args)
-
-})
-
-
-
-
-client.on('message', message => {
-  if(message.content.startsWith(`${PREFIX}createticket`)) {
-    const ticketChannel = message.guild.channel.cache.find(channel => channel.name.toLowerCase() === `${message.author.username}s-ticket`.toLowerCase())
-    if(ticketChannel) {
-      message.channel.send("You already have a open ticket")
-    } else {
-      message.guild.channels.create(`${message.author.username}s-ticket`, {
-        type: 'text',
-        permissionOverwrites: [
-          {
-            allow: 'VIEW_CHANNEL',
-            id: message.author.id
-          },
-          {
-            deny: 'VIEW_CHANNEL',
-            id: message.guild.id
-          
-          }
-        ]
-      })
-      message.channel.send("Your ticket has now been created")
-    
-   }
-}
-   if(message.content.startsWith(`{PREFIX}closeticket`)) {
-     const ticketChannel = message.guild.channels.cache.find(channel => channel.name.toLowerCase() === `${message.author.username}s-ticket`.toLocaleLowerCase())
-     if(!ticketChannel) {
-       message.channel.send("You don\'t have an open ticket")
-     } else {
-       ticketChannel.delete()
-       message.channel.send("Your ticket has now been closed")
-     }
-
-}
 
 
 
