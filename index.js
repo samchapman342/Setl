@@ -51,3 +51,23 @@ client.on("message", async message => {
 
 client.login(botsettings.token);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
