@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (client, message, args) => {
     //We have to set a argument for the help command beacuse its going to have a seperate argument.
     let helpArray = message.content.split(" ");
     let helpArgs = helpArray.slice(1);
@@ -9,6 +9,7 @@ module.exports.run = async (bot, message, args) => {
     if(helpArgs[0] === 'gaming') {
         return message.reply("This is a Gaming information Command.")
     }
+    console.log("1")
 
     //Normal usage of (prefix)help without any args. (Shows all of the commands and you should set the commands yourself)
     if(!helpArgs[0]) {
@@ -25,9 +26,9 @@ module.exports.run = async (bot, message, args) => {
     if(helpArgs[0]) {
         let command = helpArgs[0];
 
-        if(bot.commands.has(command)) {
+        if(client.commands.has(command)) {
             
-            command = bot.commands.get(command);
+            command = client.commands.get(command);
             var embed = new Discord.MessageEmbed()
             .setAuthor(`${command.config.name} Command`)
             .setDescription(`

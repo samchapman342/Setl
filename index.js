@@ -1,7 +1,7 @@
 const botsettings = require('./botsettings.json')
 const Discord = require("discord.js")
 const client = new Discord.Client();
-const PREFIX = "!"
+const prefix = "!"
 client.on('ready', async() => {
 
     console.log("Bot is Ready")
@@ -38,13 +38,14 @@ fs.readdir("./commands/", (err, files) => {
 client.on("message", async message => {
     if(message.author.client || message.channel.type === "dm") return;
 
-    let prefix = clientsettings.prefix;
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
+    let messageArray = message.content.toLowerCase().split(" ");
+let command = messageArray[0];
+let args = messageArray.slice(1);
 
-    if(!message.content.startsWith(prefix)) return;
-    let commandfile = client.commands.get(cmd.slice(prefix.length)) || client.commands.get(client.aliases.get(cmd.slice(prefix.length)))
+if(!command.startsWith(prefix)) return;
+
+let cmd = client.commands.get(command.slice(prefix.length));
+if(cmd) cmd.run(client, message, args);
 })
 
 
