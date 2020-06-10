@@ -36,7 +36,8 @@ fs.readdir("./commands/", (err, files) => {
 });
 
 client.on("message", async message => {
-    if(message.author.client || message.channel.type === "dm") return;
+  console.log(message.content)
+    if(message.author.bot || message.channel.type === "dm") return;
     console.log(message.content)
 
     let messageArray = message.content.toLowerCase().split(" ");
